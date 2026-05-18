@@ -1,0 +1,10 @@
+# Test-only wrangler config used by @cloudflare/vitest-pool-workers / miniflare.
+# The toolkit is a library, not a deployed worker — this file is NOT used in production.
+name = "mcp-toolkit-test"
+main = "tests/_runner.ts"
+compatibility_date = "2024-11-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[kv_namespaces]]
+binding = "TEST_KV"
+id = "test-kv"

@@ -1,0 +1,65 @@
+{
+  "name": "@bashco/mcp-toolkit",
+  "version": "1.0.0",
+  "description": "Build OAuth-compliant Model Context Protocol (MCP) servers on Cloudflare Workers. Provides per-client bearer tokens, rate limiting, structured logging, typed tool dispatch via Zod, and an upstream API client factory.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "anthropic",
+    "cloudflare-workers",
+    "oauth",
+    "hono",
+    "zod",
+    "ai-tools",
+    "remote-mcp"
+  ],
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./crypto": "./src/crypto/index.ts",
+    "./errors": "./src/errors/index.ts",
+    "./log": "./src/log/index.ts",
+    "./ids": "./src/ids/index.ts",
+    "./http": "./src/http/index.ts",
+    "./oauth": "./src/oauth/index.ts",
+    "./upstreamAuth": "./src/upstreamAuth/index.ts",
+    "./upstreamClient": "./src/upstreamClient/index.ts",
+    "./tools": "./src/tools/index.ts",
+    "./testing": "./src/testing/index.ts"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "author": "Bashar Basheer",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doublebash/mcp-toolkit.git"
+  },
+  "homepage": "https://github.com/doublebash/mcp-toolkit#readme",
+  "bugs": {
+    "url": "https://github.com/doublebash/mcp-toolkit/issues"
+  },
+  "peerDependencies": {
+    "hono": "^4.12.15",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.5.40",
+    "@cloudflare/workers-types": "^4.20260426.1",
+    "hono": "^4.12.15",
+    "typescript": "^5.7.2",
+    "vitest": "~2.1.9",
+    "wrangler": "^4.90.0",
+    "zod": "^4.3.6"
+  }
+}
