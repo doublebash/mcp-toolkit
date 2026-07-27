@@ -1,0 +1,26 @@
+name: CI
+
+# The toolkit is a library — nothing to deploy. This exists so the test suite
+# actually runs somewhere: the @cloudflare/vitest-pool-workers pool never boots
+# on the maintainer's Mac, which left the OAuth server, token and proxied-OAuth
+# suites effectively unexecuted. They run fine on Linux.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
