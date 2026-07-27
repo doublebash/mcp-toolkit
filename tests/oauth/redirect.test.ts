@@ -26,3 +26,31 @@ describe("isAllowedRedirectUri", () => {
     expect(isAllowedRedirectUri("", opts)).toBe(false);
   });
 });
+
+// Servers opt into http: so native clients can use an RFC 8252 loopback
+// callback. That allowance must not extend to remote hosts, or an authorization
+// code would travel in cleartext off the machine.
+describe("isAllowedRedirectUri with http: enabled for native clients", () => {
+  const nativeOpts = {
+    allowedHosts: new Set(["claude.ai", "localhost", "127.0.0.1"]),
+    allowedSchemes: new Set(["https:", "http:"]),
+  };
+
+  it("accepts http:// on loopback", () => {
+    expect(isAllowedRedirectUri("http://localhost:8976/cb", nativeOpts)).toBe(true);
+    expect(isAllowedRedirectUri("http://127.0.0.1:8976/cb", nativeOpts)).toBe(true);
+  });
+
+  it("still rejects http:// on a remote host, even an allowed one", () => {
+    expect(isAllowedRedirectUri("http://claude.ai/cb", nativeOpts)).toBe(false);
+  });
+
+  it("keeps accepting https:// everywhere allowed", () => {
+    expect(isAllowedRedirectUri("https://claude.ai/cb", nativeOpts)).toBe(true);
+    expect(isAllowedRedirectUri("https://localhost:8976/cb", nativeOpts)).toBe(true);
+  });
+
+  it("does not let an unlisted loopback-looking host through", () => {
+    expect(isAllowedRedirectUri("http://localhost.attacker.com/cb", nativeOpts)).toBe(false);
+  });
+});

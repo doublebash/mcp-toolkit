@@ -1,6 +1,6 @@
 {
   "name": "@bashco/mcp-toolkit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Build OAuth-compliant Model Context Protocol (MCP) servers on Cloudflare Workers. Provides per-client bearer tokens, rate limiting, structured logging, typed tool dispatch via Zod, and an upstream API client factory.",
   "keywords": [
     "mcp",
