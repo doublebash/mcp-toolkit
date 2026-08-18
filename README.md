@@ -74,7 +74,7 @@ The toolkit is organised into small, independently-importable modules:
 | --- | --- |
 | `@bashco/mcp-toolkit/oauth` | OAuth 2.0 + PKCE server, per-client KV-stored bearer tokens, approval-code gating |
 | `@bashco/mcp-toolkit/http` | MCP JSON-RPC router, CORS for Claude origins, HTML approve page, native + KV-based rate limiting |
-| `@bashco/mcp-toolkit/tools` | Type-safe Zod tool definition + dispatch |
+| `@bashco/mcp-toolkit/tools` | Type-safe Zod tool definition + dispatch, self-describing truncated list results |
 | `@bashco/mcp-toolkit/errors` | `ToolError` for structured tool error returns |
 | `@bashco/mcp-toolkit/crypto` | Timing-safe compare, base64url, SHA-256, AES-GCM encrypt-at-rest |
 | `@bashco/mcp-toolkit/ids` | UUID and provider-id validators, path-template builder |
